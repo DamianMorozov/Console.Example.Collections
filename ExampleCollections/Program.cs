@@ -11,6 +11,10 @@ namespace ExampleCollections
     {
         private static void Main()
         {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Examples of collections                    ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
             var numberMenu = -1;
             while (numberMenu != 0)
             {
@@ -35,13 +39,9 @@ namespace ExampleCollections
         private static void PrintCaption()
         {
             Console.WriteLine();
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Examples of collections                    ---");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine();
             Console.WriteLine(" 0. Exit.");
             Console.WriteLine(" 1. ArrayList.");
-            Console.WriteLine(" 2. Stack (not working yet).");
+            Console.WriteLine(" 2. Stack.");
             Console.WriteLine(" 3. Queue (not working yet).");
             Console.WriteLine(" 4. Hashtable (not working yet).");
             Console.WriteLine(" 5. SortedList (not working yet).");
@@ -51,6 +51,7 @@ namespace ExampleCollections
 
         private static void PrintSwitch(int numberMenu)
         {
+            Console.WriteLine();
             switch (numberMenu)
             {
                 case 1:
@@ -75,6 +76,7 @@ namespace ExampleCollections
                     PrintSwitch10();
                     break;
             }
+            Console.WriteLine(@"----------------------------------------------------------------------");
         }
 
         private static void PrintSwitch1()
@@ -84,33 +86,46 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             ArrayList arrayList = new ArrayList();
-            Console.WriteLine("ArrayList arrayList = new ArrayList();");
+            Console.WriteLine($"ArrayList {nameof(arrayList)} = new ArrayList();");
             arrayList.Add(1);
-            Console.WriteLine("arrayList.Add(1);");
+            Console.WriteLine($"{nameof(arrayList)}.Add(1);");
             arrayList.Add("Example");
-            Console.WriteLine("arrayList.Add(\"Example\");");
+            Console.WriteLine($"{nameof(arrayList)}.Add(\"Example\");");
             arrayList.Add(true);
-            Console.WriteLine("arrayList.Add(true);");
+            Console.WriteLine($"{nameof(arrayList)}.Add(true);");
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine("arrayList.Count: " + arrayList.Count);
-            Console.WriteLine("arrayList.Contains(1): " + arrayList.Contains(1));
-            Console.WriteLine("arrayList.Contains(2): " + arrayList.Contains(2));
-            Console.WriteLine("arrayList.Contains(\"Example\"): " + arrayList.Contains("Example"));
-            Console.WriteLine("arrayList.Contains(\"Example2\"): " + arrayList.Contains("Example2"));
-            Console.WriteLine("arrayList[1]: " + arrayList[1]);
+            Console.WriteLine($"{nameof(arrayList)}.Count: " + arrayList.Count);
+            Console.WriteLine($"{nameof(arrayList)}.Contains(1): " + arrayList.Contains(1));
+            Console.WriteLine($"{nameof(arrayList)}.Contains(2): " + arrayList.Contains(2));
+            Console.WriteLine($"{nameof(arrayList)}.Contains(\"Example\"): " + arrayList.Contains("Example"));
+            Console.WriteLine($"{nameof(arrayList)}.Contains(\"Example2\"): " + arrayList.Contains("Example2"));
+            Console.WriteLine($"{nameof(arrayList)}[1]: " + arrayList[1]);
             arrayList.RemoveAt(1);
-            Console.WriteLine("arrayList.RemoveAt(1);");
-            Console.WriteLine("arrayList[1]: " + arrayList[1]);
-            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine($"{nameof(arrayList)}.RemoveAt(1);");
+            Console.WriteLine($"{nameof(arrayList)}[1]: " + arrayList[1]);
         }
 
         private static void PrintSwitch2()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of ArrayList                       ---");
+            Console.WriteLine(@"---                     Example of Stack                           ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Stack stack = new Stack();
+            Console.WriteLine($"Stack {nameof(stack)} = new Stack();");
+            for (int i = 1; i <= 10; i++)
+            {
+                stack.Push(i);
+                Console.WriteLine($"{nameof(stack)}.Push({i});");
+            }
+            Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
+
+            stack.Pop();
+            Console.WriteLine($"{nameof(stack)}.Pop();");
+
+            Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
+
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(5): {stack.Contains(5)}");
         }
 
         private static void PrintSwitch3()

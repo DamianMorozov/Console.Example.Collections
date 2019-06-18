@@ -2,7 +2,7 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.0.14] - 2019-06-18
+## [0.0.15] - 2019-06-18
 ### Added
 - .gitattributes
 - .gitignore
@@ -12,4 +12,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - ExampleCollections
   - ExampleCollections.sln
     - ArrayList.
+    - Stack.
     - Filling byte arrays.
