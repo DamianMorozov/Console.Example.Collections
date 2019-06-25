@@ -42,7 +42,7 @@ namespace ExampleCollections
             Console.WriteLine(" 0. Exit.");
             Console.WriteLine(" 1. ArrayList.");
             Console.WriteLine(" 2. Stack.");
-            Console.WriteLine(" 3. Queue (not working yet).");
+            Console.WriteLine(" 3. Queue.");
             Console.WriteLine(" 4. Hashtable (not working yet).");
             Console.WriteLine(" 5. SortedList (not working yet).");
             Console.WriteLine(" 6. BitArray (not working yet).");
@@ -55,31 +55,31 @@ namespace ExampleCollections
             switch (numberMenu)
             {
                 case 1:
-                    PrintSwitch1();
+                    PrintSwitchArrayList();
                     break;
                 case 2:
-                    PrintSwitch2();
+                    PrintSwitchStack();
                     break;
                 case 3:
-                    PrintSwitch3();
+                    PrintSwitchQueue();
                     break;
                 case 4:
-                    PrintSwitch4();
+                    PrintSwitchHashtable();
                     break;
                 case 5:
-                    PrintSwitch5();
+                    PrintSwitchSortedList();
                     break;
                 case 6:
-                    PrintSwitch6();
+                    PrintSwitchBitArray();
                     break;
                 case 10:
-                    PrintSwitch10();
+                    PrintSwitchByteArraysFilling();
                     break;
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
         }
 
-        private static void PrintSwitch1()
+        private static void PrintSwitchArrayList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of ArrayList                       ---");
@@ -105,7 +105,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(arrayList)}[1]: " + arrayList[1]);
         }
 
-        private static void PrintSwitch2()
+        private static void PrintSwitchStack()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Stack                           ---");
@@ -119,25 +119,50 @@ namespace ExampleCollections
                 Console.WriteLine($"{nameof(stack)}.Push({i});");
             }
             Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
+
+            foreach (var item in stack)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
 
             stack.Pop();
             Console.WriteLine($"{nameof(stack)}.Pop();");
 
             Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
-
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(5): {stack.Contains(5)}");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
         }
 
-        private static void PrintSwitch3()
+        private static void PrintSwitchQueue()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Queue                           ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Queue queue = new Queue();
+            Console.WriteLine($"Queue {nameof(queue)} = new Queue();");
+            for (int i = 1; i <= 10; i++)
+            {
+                queue.Enqueue(i);
+                Console.WriteLine($"{nameof(queue)}.Enqueue({i});");
+            }
+            Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
+            Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
+
+            foreach (var item in queue)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+
+            queue.Dequeue();
+            Console.WriteLine($"{nameof(queue)}.Dequeue();");
+            Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
+            Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
         }
 
-        private static void PrintSwitch4()
+        private static void PrintSwitchHashtable()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Hashtable                       ---");
@@ -146,7 +171,7 @@ namespace ExampleCollections
             Hashtable hashtable = new Hashtable();
         }
 
-        private static void PrintSwitch5()
+        private static void PrintSwitchSortedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of SortedList                      ---");
@@ -155,7 +180,7 @@ namespace ExampleCollections
             SortedList sortedList = new SortedList();
         }
 
-        private static void PrintSwitch6()
+        private static void PrintSwitchBitArray()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of BitArray                        ---");
@@ -164,7 +189,7 @@ namespace ExampleCollections
             BitArray bitArray = new BitArray(10);
         }
 
-        private static void PrintSwitch10()
+        private static void PrintSwitchByteArraysFilling()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                Examples of filling byte arrays                 ---");
