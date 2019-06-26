@@ -2,6 +2,12 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.31] - 2019-06-26
+### Added
+- ExampleCollections
+  - ExampleCollections.sln
+    - Hashtable.
+
 ## [0.0.30] - 2019-06-25
 ### Added
 - ExampleCollections

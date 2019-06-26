@@ -43,7 +43,7 @@ namespace ExampleCollections
             Console.WriteLine(" 1. ArrayList.");
             Console.WriteLine(" 2. Stack.");
             Console.WriteLine(" 3. Queue.");
-            Console.WriteLine(" 4. Hashtable (not working yet).");
+            Console.WriteLine(" 4. Hashtable.");
             Console.WriteLine(" 5. SortedList (not working yet).");
             Console.WriteLine(" 6. BitArray (not working yet).");
             Console.WriteLine("10. Filling byte arrays.");
@@ -169,6 +169,32 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Hashtable hashtable = new Hashtable();
+            Console.WriteLine($"Hashtable {nameof(hashtable)} = new Hashtable();");
+            hashtable.Add("001", ".NET");
+            Console.WriteLine($"{nameof(hashtable)}.Add(\"001\", \".NET\");");
+            hashtable.Add("002", "C#");
+            Console.WriteLine($"{nameof(hashtable)}.Add(\"002\", \"C#\");");
+            hashtable.Add("003", "ASP.NET");
+            Console.WriteLine($"{nameof(hashtable)}.Add(\"003\", \"ASP.NET\");");
+            Console.WriteLine($"{nameof(hashtable)}.ContainsKey(\"003\"): " + hashtable.ContainsKey("003"));
+            Console.WriteLine($"{nameof(hashtable)}.ContainsValue(\"C#\"): " + hashtable.ContainsValue("C#"));
+            Console.WriteLine();
+
+            ICollection keys = hashtable.Keys;
+            Console.WriteLine($"ICollection {nameof(keys)} = {nameof(hashtable)}.Keys;");
+            foreach (var key in keys)
+            {
+                Console.Write(key + " | ");
+            }
+            Console.WriteLine();
+
+            ICollection values = hashtable.Values;
+            Console.WriteLine($"ICollection {nameof(values)} = {nameof(hashtable)}.Values;");
+            foreach (var value in values)
+            {
+                Console.Write(value + " | ");
+            }
+            Console.WriteLine();
         }
 
         private static void PrintSwitchSortedList()
