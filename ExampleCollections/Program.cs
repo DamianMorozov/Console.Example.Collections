@@ -44,7 +44,7 @@ namespace ExampleCollections
             Console.WriteLine(" 2. Stack.");
             Console.WriteLine(" 3. Queue.");
             Console.WriteLine(" 4. Hashtable.");
-            Console.WriteLine(" 5. SortedList (not working yet).");
+            Console.WriteLine(" 5. SortedList.");
             Console.WriteLine(" 6. BitArray (not working yet).");
             Console.WriteLine("10. Filling byte arrays.");
         }
@@ -121,6 +121,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
             Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
 
+            Console.WriteLine($"foreach (var item in {nameof(stack)})");
             foreach (var item in stack)
             {
                 Console.Write($"{item} | ");
@@ -129,6 +130,13 @@ namespace ExampleCollections
 
             stack.Pop();
             Console.WriteLine($"{nameof(stack)}.Pop();");
+
+            Console.WriteLine($"foreach (var item in {nameof(stack)})");
+            foreach (var item in stack)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
 
             Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
             Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
@@ -142,6 +150,7 @@ namespace ExampleCollections
 
             Queue queue = new Queue();
             Console.WriteLine($"Queue {nameof(queue)} = new Queue();");
+            Console.WriteLine($"for (int i = 1; i <= 10; i++)");
             for (int i = 1; i <= 10; i++)
             {
                 queue.Enqueue(i);
@@ -150,6 +159,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
             Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
 
+            Console.WriteLine($"foreach (var item in {nameof(queue)})");
             foreach (var item in queue)
             {
                 Console.Write($"{item} | ");
@@ -158,6 +168,14 @@ namespace ExampleCollections
 
             queue.Dequeue();
             Console.WriteLine($"{nameof(queue)}.Dequeue();");
+
+            Console.WriteLine($"foreach (var item in {nameof(queue)})");
+            foreach (var item in queue)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+
             Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
             Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
         }
@@ -204,6 +222,28 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             SortedList sortedList = new SortedList();
+            Console.WriteLine($"SortedList {nameof(sortedList)} = new SortedList();");
+            for (int i = 10; i > 0; i--)
+            {
+                sortedList.Add(i, "Value " + i.ToString());
+                Console.WriteLine($"{nameof(sortedList)}.Add(i, \"Value " + i.ToString() + "\");");
+            }
+
+            ICollection keys = sortedList.Keys;
+            Console.WriteLine($"ICollection {nameof(keys)} = {nameof(sortedList)}.Keys;");
+            foreach (var key in keys)
+            {
+                Console.Write(key + " | ");
+            }
+            Console.WriteLine();
+
+            ICollection values = sortedList.Values;
+            Console.WriteLine($"ICollection {nameof(values)} = {nameof(sortedList)}.Values;");
+            foreach (var value in values)
+            {
+                Console.Write(value + " | ");
+            }
+            Console.WriteLine();
         }
 
         private static void PrintSwitchBitArray()
