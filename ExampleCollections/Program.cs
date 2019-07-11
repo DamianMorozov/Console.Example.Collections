@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ExampleCollections
@@ -45,7 +46,8 @@ namespace ExampleCollections
             Console.WriteLine(" 3. Queue.");
             Console.WriteLine(" 4. Hashtable.");
             Console.WriteLine(" 5. SortedList.");
-            Console.WriteLine(" 6. BitArray (not working yet).");
+            Console.WriteLine(" 6. SortedDictionary.");
+            Console.WriteLine(" 7. BitArray (not working yet).");
             Console.WriteLine("10. Filling byte arrays.");
         }
 
@@ -70,6 +72,9 @@ namespace ExampleCollections
                     PrintSwitchSortedList();
                     break;
                 case 6:
+                    PrintSwitchSortedDictionary();
+                    break;
+                case 7:
                     PrintSwitchBitArray();
                     break;
                 case 10:
@@ -239,6 +244,73 @@ namespace ExampleCollections
 
             ICollection values = sortedList.Values;
             Console.WriteLine($"ICollection {nameof(values)} = {nameof(sortedList)}.Values;");
+            foreach (var value in values)
+            {
+                Console.Write(value + " | ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void PrintSwitchSortedDictionary()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                  Example of SortedDictionary                   ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            var sortedDictionary = new SortedDictionary<string, string>();
+            Console.WriteLine($"var {nameof(sortedDictionary)} = new SortedDictionary<string, string>();");
+
+            sortedDictionary.Add("txt", "notepad.exe");
+            Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"txt\", \"notepad.exe\");");
+            sortedDictionary.Add("bmp", "paint.exe");
+            Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"bmp\", \"paint.exe\");");
+            sortedDictionary.Add("dib", "paint.exe");
+            Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"dib\", \"paint.exe\");");
+            sortedDictionary.Add("rtf", "wordpad.exe");
+            Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"rtf\", \"wordpad.exe\");");
+            foreach (KeyValuePair<string, string> item in sortedDictionary)
+            {
+                Console.WriteLine($"{nameof(sortedDictionary)}[\"" + item.Key + $"\"] = {item.Value}");
+            }
+
+            try
+            {
+                sortedDictionary.Add("txt", "winword.exe");
+                Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"txt\", \"winword.exe\");");
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("An element with Key = \"txt\" already exists.");
+            }
+
+            sortedDictionary["rtf"] = "winword.exe";
+            Console.WriteLine($"{nameof(sortedDictionary)}[\"rtf\"] = \"winword.exe\";");
+
+            try
+            {
+                Console.WriteLine("For key = \"tif\", value = {0}.", sortedDictionary["tif"]);
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("Key = \"tif\" is not found.");
+            }
+            Console.WriteLine($"sortedDictionary.ContainsKey(\"rtf\"): " + sortedDictionary.ContainsKey("rtf"));
+
+            foreach (KeyValuePair<string, string> item in sortedDictionary)
+            {
+                Console.WriteLine($"{nameof(sortedDictionary)}[\"" + item.Key + $"\"] = {item.Value}");
+            }
+
+            ICollection keys = sortedDictionary.Keys;
+            Console.WriteLine($"ICollection {nameof(keys)} = {nameof(sortedDictionary)}.Keys;");
+            foreach (var key in keys)
+            {
+                Console.Write(key + " | ");
+            }
+            Console.WriteLine();
+
+            ICollection values = sortedDictionary.Values;
+            Console.WriteLine($"ICollection {nameof(values)} = {nameof(sortedDictionary)}.Values;");
             foreach (var value in values)
             {
                 Console.Write(value + " | ");

@@ -2,6 +2,12 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.33] - 2019-07-11
+### Added
+- ExampleCollections
+  - ExampleCollections.sln
+    - SortedDictionary.
+
 ## [0.0.32] - 2019-07-10
 ### Added
 - ExampleCollections
