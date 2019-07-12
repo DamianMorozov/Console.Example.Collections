@@ -2,10 +2,11 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.0.34] - 2019-07-12
+## [0.0.35] - 2019-07-12
 ### Added
 - ExampleCollections
     - Classification of collections.
+    - List.
 
 ## [0.0.33] - 2019-07-11
 ### Added

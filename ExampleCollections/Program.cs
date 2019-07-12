@@ -10,6 +10,8 @@ namespace ExampleCollections
 {
     internal class Program
     {
+        #region Main methods
+
         private static void Main()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -49,7 +51,8 @@ namespace ExampleCollections
             Console.WriteLine("   15. SortedList.");
             Console.WriteLine("   16. BitArray (not working yet).");
             Console.WriteLine("2. System.Collections.Generic.");
-            Console.WriteLine("   21. SortedDictionary.");
+            Console.WriteLine("   21. List<T>.");
+            Console.WriteLine("   22. SortedDictionary<T, T>.");
             Console.WriteLine("3. System.Collections.Specialized.");
             Console.WriteLine("4. System.Collections.Concurrent.");
             Console.WriteLine("5. My classes.");
@@ -83,6 +86,9 @@ namespace ExampleCollections
                 #endregion
                 #region System.Collections.Generic
                 case 21:
+                    PrintSwitchList();
+                    break;
+                case 22:
                     PrintSwitchSortedDictionary();
                     break;
                 #endregion
@@ -95,11 +101,15 @@ namespace ExampleCollections
                 #region My classes
                 case 51:
                     PrintSwitchByteArraysFilling();
-                    break; 
-                #endregion
+                    break;
+                    #endregion
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
         }
+
+        #endregion
+
+        #region System.Collections
 
         private static void PrintSwitchArrayList()
         {
@@ -109,6 +119,7 @@ namespace ExampleCollections
 
             ArrayList arrayList = new ArrayList();
             Console.WriteLine($"ArrayList {nameof(arrayList)} = new ArrayList();");
+
             arrayList.Add(1);
             Console.WriteLine($"{nameof(arrayList)}.Add(1);");
             arrayList.Add("Example");
@@ -116,6 +127,12 @@ namespace ExampleCollections
             arrayList.Add(true);
             Console.WriteLine($"{nameof(arrayList)}.Add(true);");
             Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine($"foreach (var item in {nameof(arrayList)})");
+            foreach (var item in arrayList)
+            {
+                Console.WriteLine($"  item: {item}");
+            }
             Console.WriteLine($"{nameof(arrayList)}.Count: " + arrayList.Count);
             Console.WriteLine($"{nameof(arrayList)}.Contains(1): " + arrayList.Contains(1));
             Console.WriteLine($"{nameof(arrayList)}.Contains(2): " + arrayList.Contains(2));
@@ -125,6 +142,12 @@ namespace ExampleCollections
             arrayList.RemoveAt(1);
             Console.WriteLine($"{nameof(arrayList)}.RemoveAt(1);");
             Console.WriteLine($"{nameof(arrayList)}[1]: " + arrayList[1]);
+
+            Console.WriteLine($"foreach (var item in {nameof(arrayList)})");
+            foreach (var item in arrayList)
+            {
+                Console.WriteLine($"  item: {item}");
+            }
         }
 
         private static void PrintSwitchStack()
@@ -268,6 +291,56 @@ namespace ExampleCollections
             Console.WriteLine();
         }
 
+        private static void PrintSwitchBitArray()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Example of BitArray                        ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            BitArray bitArray = new BitArray(10);
+        }
+
+        #endregion
+
+        #region System.Collections.Generic
+
+        private static void PrintSwitchList()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Example of BitArray                        ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            List<string> list = new List<string>();
+            Console.WriteLine($"List<string> {nameof(list)} = new List<string>();");
+
+            list.Add("Example 1");
+            Console.WriteLine($"{nameof(list)}.Add(\"Example 1\");");
+            list.Add("Example 3");
+            Console.WriteLine($"{nameof(list)}.Add(\"Example 3\");");
+            list.Add("Example 2");
+            Console.WriteLine($"{nameof(list)}.Add(\"Example 2\");");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine($"foreach (var item in {nameof(list)})");
+            foreach (var item in list)
+            {
+                Console.WriteLine($"  item: {item}");
+            }
+            Console.WriteLine($"{nameof(list)}.Count: " + list.Count);
+            Console.WriteLine($"{nameof(list)}.Contains(\"Example 2\"): " + list.Contains("Example 2"));
+            Console.WriteLine($"{nameof(list)}.Contains(\"Example 33\"): " + list.Contains("Example 33"));
+            Console.WriteLine($"{nameof(list)}[1]: " + list[1]);
+            list.RemoveAt(1);
+            Console.WriteLine($"{nameof(list)}.RemoveAt(1);");
+            Console.WriteLine($"{nameof(list)}[1]: " + list[1]);
+
+            Console.WriteLine($"foreach (var item in {nameof(list)})");
+            foreach (var item in list)
+            {
+                Console.WriteLine($"  item: {item}");
+            }
+        }
+
         private static void PrintSwitchSortedDictionary()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -335,14 +408,17 @@ namespace ExampleCollections
             Console.WriteLine();
         }
 
-        private static void PrintSwitchBitArray()
-        {
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of BitArray                        ---");
-            Console.WriteLine(@"----------------------------------------------------------------------");
+        #endregion
 
-            BitArray bitArray = new BitArray(10);
-        }
+        #region System.Collections.Specialized
+
+        #endregion
+
+        #region System.Collections.Concurrent
+
+        #endregion
+
+        #region My classes
 
         private static void PrintSwitchByteArraysFilling()
         {
@@ -400,6 +476,8 @@ namespace ExampleCollections
             stopWatch.Stop();
             Console.WriteLine($@" | Elapsed time: {stopWatch.Elapsed}");
             Console.WriteLine(@"------------------------------------+---------------------------------");
-        }
+        } 
+        
+        #endregion
     }
 }
