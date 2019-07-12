@@ -40,15 +40,20 @@ namespace ExampleCollections
         private static void PrintCaption()
         {
             Console.WriteLine();
-            Console.WriteLine(" 0. Exit.");
-            Console.WriteLine(" 1. ArrayList.");
-            Console.WriteLine(" 2. Stack.");
-            Console.WriteLine(" 3. Queue.");
-            Console.WriteLine(" 4. Hashtable.");
-            Console.WriteLine(" 5. SortedList.");
-            Console.WriteLine(" 6. SortedDictionary.");
-            Console.WriteLine(" 7. BitArray (not working yet).");
-            Console.WriteLine("10. Filling byte arrays.");
+            Console.WriteLine("0. Exit.");
+            Console.WriteLine("1. System.Collections.");
+            Console.WriteLine("   11. ArrayList.");
+            Console.WriteLine("   12. Stack.");
+            Console.WriteLine("   13. Queue.");
+            Console.WriteLine("   14. Hashtable.");
+            Console.WriteLine("   15. SortedList.");
+            Console.WriteLine("   16. BitArray (not working yet).");
+            Console.WriteLine("2. System.Collections.Generic.");
+            Console.WriteLine("   21. SortedDictionary.");
+            Console.WriteLine("3. System.Collections.Specialized.");
+            Console.WriteLine("4. System.Collections.Concurrent.");
+            Console.WriteLine("5. My classes.");
+            Console.WriteLine("   51. Filling byte arrays.");
         }
 
         private static void PrintSwitch(int numberMenu)
@@ -56,30 +61,42 @@ namespace ExampleCollections
             Console.WriteLine();
             switch (numberMenu)
             {
-                case 1:
+                #region System.Collections
+                case 11:
                     PrintSwitchArrayList();
                     break;
-                case 2:
+                case 12:
                     PrintSwitchStack();
                     break;
-                case 3:
+                case 13:
                     PrintSwitchQueue();
                     break;
-                case 4:
+                case 14:
                     PrintSwitchHashtable();
                     break;
-                case 5:
+                case 15:
                     PrintSwitchSortedList();
                     break;
-                case 6:
-                    PrintSwitchSortedDictionary();
-                    break;
-                case 7:
+                case 16:
                     PrintSwitchBitArray();
                     break;
-                case 10:
-                    PrintSwitchByteArraysFilling();
+                #endregion
+                #region System.Collections.Generic
+                case 21:
+                    PrintSwitchSortedDictionary();
                     break;
+                #endregion
+                #region System.Collections.Specialized
+                //
+                #endregion
+                #region System.Collections.Concurrent
+                //
+                #endregion
+                #region My classes
+                case 51:
+                    PrintSwitchByteArraysFilling();
+                    break; 
+                #endregion
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
         }
@@ -257,8 +274,8 @@ namespace ExampleCollections
             Console.WriteLine(@"---                  Example of SortedDictionary                   ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            var sortedDictionary = new SortedDictionary<string, string>();
-            Console.WriteLine($"var {nameof(sortedDictionary)} = new SortedDictionary<string, string>();");
+            SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
+            Console.WriteLine($"SortedDictionary<string, string> {nameof(sortedDictionary)} = new SortedDictionary<string, string>();");
 
             sortedDictionary.Add("txt", "notepad.exe");
             Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"txt\", \"notepad.exe\");");
@@ -333,7 +350,7 @@ namespace ExampleCollections
             Console.WriteLine(@"---                Examples of filling byte arrays                 ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            var arrayByte = new ClassArrayByte();
+            ClassArrayByte arrayByte = new ClassArrayByte();
             FillByTypeAll(arrayByte, 1_024, "1 KB", 0x_00);
             FillByTypeAll(arrayByte, 1_024 * 1_024, "1 MB", 0x_00);
             FillByTypeAll(arrayByte, 1_024 * 1_024 * 10, "10 MB", 0x_00);
