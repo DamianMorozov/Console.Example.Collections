@@ -13,6 +13,7 @@ System.Collections
   - BitArray
 
 System.Collections.Generic
+- LinkedList<T>
 - List<T>
 - SortedDictionary<T, T>
 

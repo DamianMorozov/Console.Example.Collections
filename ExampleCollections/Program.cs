@@ -51,8 +51,9 @@ namespace ExampleCollections
             Console.WriteLine("   15. SortedList.");
             Console.WriteLine("   16. BitArray (not working yet).");
             Console.WriteLine("2. System.Collections.Generic.");
-            Console.WriteLine("   21. List<T>.");
-            Console.WriteLine("   22. SortedDictionary<T, T>.");
+            Console.WriteLine("   21. LinkedList<T>.");
+            Console.WriteLine("   22. List<T>.");
+            Console.WriteLine("   23. SortedDictionary<T, T>.");
             Console.WriteLine("3. System.Collections.Specialized.");
             Console.WriteLine("4. System.Collections.Concurrent.");
             Console.WriteLine("5. My classes.");
@@ -66,30 +67,33 @@ namespace ExampleCollections
             {
                 #region System.Collections
                 case 11:
-                    PrintSwitchArrayList();
+                    PrintArrayList();
                     break;
                 case 12:
-                    PrintSwitchStack();
+                    PrintStack();
                     break;
                 case 13:
-                    PrintSwitchQueue();
+                    PrintQueue();
                     break;
                 case 14:
-                    PrintSwitchHashtable();
+                    PrintHashtable();
                     break;
                 case 15:
-                    PrintSwitchSortedList();
+                    PrintSortedList();
                     break;
                 case 16:
-                    PrintSwitchBitArray();
+                    PrintBitArray();
                     break;
                 #endregion
                 #region System.Collections.Generic
                 case 21:
-                    PrintSwitchList();
+                    PrintLinkedList();
                     break;
                 case 22:
-                    PrintSwitchSortedDictionary();
+                    PrintList();
+                    break;
+                case 23:
+                    PrintSortedDictionary();
                     break;
                 #endregion
                 #region System.Collections.Specialized
@@ -100,7 +104,7 @@ namespace ExampleCollections
                 #endregion
                 #region My classes
                 case 51:
-                    PrintSwitchByteArraysFilling();
+                    PrintByteArraysFilling();
                     break;
                     #endregion
             }
@@ -111,7 +115,7 @@ namespace ExampleCollections
 
         #region System.Collections
 
-        private static void PrintSwitchArrayList()
+        private static void PrintArrayList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of ArrayList                       ---");
@@ -150,7 +154,7 @@ namespace ExampleCollections
             }
         }
 
-        private static void PrintSwitchStack()
+        private static void PrintStack()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Stack                           ---");
@@ -187,7 +191,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
         }
 
-        private static void PrintSwitchQueue()
+        private static void PrintQueue()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Queue                           ---");
@@ -225,7 +229,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
         }
 
-        private static void PrintSwitchHashtable()
+        private static void PrintHashtable()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Hashtable                       ---");
@@ -260,7 +264,7 @@ namespace ExampleCollections
             Console.WriteLine();
         }
 
-        private static void PrintSwitchSortedList()
+        private static void PrintSortedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of SortedList                      ---");
@@ -291,7 +295,7 @@ namespace ExampleCollections
             Console.WriteLine();
         }
 
-        private static void PrintSwitchBitArray()
+        private static void PrintBitArray()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of BitArray                        ---");
@@ -304,10 +308,44 @@ namespace ExampleCollections
 
         #region System.Collections.Generic
 
-        private static void PrintSwitchList()
+        private static void PrintLinkedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of BitArray                        ---");
+            Console.WriteLine(@"---                  Example of LinkedList<T>                      ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            string[] words = { "the", "fox", "jumps", "over", "the", "dog" };
+            Console.WriteLine("string[] words = { \"the\",\"fox\", \"jumps\", \"over\", \"the\", \"dog\" };");
+            LinkedList<string> linkedList = new LinkedList<string>(words);
+            Console.WriteLine($"LinkedList<string> {nameof(linkedList)} = new LinkedList<string>();");
+            Console.WriteLine($"foreach (var item in {nameof(linkedList)})");
+            Console.Write($"  Items: ");
+            foreach (var item in linkedList)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+
+            linkedList.AddFirst("Example start");
+            Console.WriteLine($"{nameof(linkedList)}.linkedList.AddFirst(\"Example start\");");
+            linkedList.AddAfter(linkedList.FindLast("the"), "Example after the");
+            Console.WriteLine($"{nameof(linkedList)}.linkedList.AddFirst(\"Example after the\");");
+            linkedList.AddLast("Example end");
+            Console.WriteLine($"{nameof(linkedList)}.linkedList.AddLast(\"Example end\");");
+
+            Console.WriteLine($"foreach (var item in {nameof(linkedList)})");
+            Console.Write($"  Items: ");
+            foreach (var item in linkedList)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void PrintList()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Example of List<T>                         ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             List<string> list = new List<string>();
@@ -341,10 +379,10 @@ namespace ExampleCollections
             }
         }
 
-        private static void PrintSwitchSortedDictionary()
+        private static void PrintSortedDictionary()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                  Example of SortedDictionary                   ---");
+            Console.WriteLine(@"---          Example of SortedDictionary<TKey, TValue>            ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
@@ -420,7 +458,7 @@ namespace ExampleCollections
 
         #region My classes
 
-        private static void PrintSwitchByteArraysFilling()
+        private static void PrintByteArraysFilling()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                Examples of filling byte arrays                 ---");

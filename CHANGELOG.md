@@ -2,6 +2,11 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.36] - 2019-07-17
+### Added
+- ExampleCollections
+    - LinkedList.
+
 ## [0.0.35] - 2019-07-12
 ### Added
 - ExampleCollections
