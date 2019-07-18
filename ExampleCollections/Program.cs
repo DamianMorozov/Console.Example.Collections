@@ -14,17 +14,12 @@ namespace ExampleCollections
 
         private static void Main()
         {
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Examples of collections                    ---");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
             var numberMenu = -1;
             while (numberMenu != 0)
             {
                 PrintCaption();
                 try
                 {
-                    Console.Write("Type switch: ");
                     numberMenu = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (Exception exception)
@@ -35,14 +30,15 @@ namespace ExampleCollections
                 Console.WriteLine();
                 PrintSwitch(numberMenu);
             }
-            Console.WriteLine("Press enter to exit.");
-            Console.ReadLine();
         }
 
         private static void PrintCaption()
         {
-            Console.WriteLine();
-            Console.WriteLine("0. Exit.");
+            Console.Clear();
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Examples of collections                    ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine("0. Exit from console.");
             Console.WriteLine("1. System.Collections.");
             Console.WriteLine("   11. ArrayList.");
             Console.WriteLine("   12. Stack.");
@@ -54,45 +50,57 @@ namespace ExampleCollections
             Console.WriteLine("   21. LinkedList<T>.");
             Console.WriteLine("   22. List<T>.");
             Console.WriteLine("   23. SortedDictionary<T, T>.");
-            Console.WriteLine("3. System.Collections.Specialized.");
-            Console.WriteLine("4. System.Collections.Concurrent.");
+            Console.WriteLine("3. System.Collections.Specialized (not working yet).");
+            Console.WriteLine("4. System.Collections.Concurrent (not working yet).");
             Console.WriteLine("5. My classes.");
             Console.WriteLine("   51. Filling byte arrays.");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.Write("Type switch: ");
         }
 
         private static void PrintSwitch(int numberMenu)
         {
-            Console.WriteLine();
+            Console.Clear();
+            var isPrintMenu = false;
             switch (numberMenu)
             {
                 #region System.Collections
                 case 11:
+                    isPrintMenu = true;
                     PrintArrayList();
                     break;
                 case 12:
+                    isPrintMenu = true;
                     PrintStack();
                     break;
                 case 13:
+                    isPrintMenu = true;
                     PrintQueue();
                     break;
                 case 14:
+                    isPrintMenu = true;
                     PrintHashtable();
                     break;
                 case 15:
+                    isPrintMenu = true;
                     PrintSortedList();
                     break;
                 case 16:
+                    isPrintMenu = true;
                     PrintBitArray();
                     break;
                 #endregion
                 #region System.Collections.Generic
                 case 21:
+                    isPrintMenu = true;
                     PrintLinkedList();
                     break;
                 case 22:
+                    isPrintMenu = true;
                     PrintList();
                     break;
                 case 23:
+                    isPrintMenu = true;
                     PrintSortedDictionary();
                     break;
                 #endregion
@@ -104,11 +112,17 @@ namespace ExampleCollections
                 #endregion
                 #region My classes
                 case 51:
+                    isPrintMenu = true;
                     PrintByteArraysFilling();
                     break;
-                    #endregion
+                #endregion
             }
-            Console.WriteLine(@"----------------------------------------------------------------------");
+            if (isPrintMenu)
+            {
+                Console.WriteLine(@"----------------------------------------------------------------------");
+                Console.Write("Type any key to return in main menu.");
+                Console.ReadKey();
+            }
         }
 
         #endregion
