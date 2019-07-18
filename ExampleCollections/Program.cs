@@ -173,36 +173,75 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Stack                           ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"Stack<T> - collection with LIFO (Last Input First Output).");
+            Console.WriteLine(@"Push - adds an element to first place.");
+            Console.WriteLine(@"Pop - retrieves and returns the first item.");
+            Console.WriteLine(@"Peek - returns the first item without removing it.");
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
+            Console.WriteLine(@"// Create new stack.");
             Stack stack = new Stack();
             Console.WriteLine($"Stack {nameof(stack)} = new Stack();");
-            for (int i = 1; i <= 10; i++)
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Push items.");
+            for (int i = 1; i <= 5; i++)
             {
                 stack.Push(i);
                 Console.WriteLine($"{nameof(stack)}.Push({i});");
             }
+            for (int i = 6; i <= 10; i++)
+            {
+                stack.Push("Item " + i.ToString());
+                Console.WriteLine($"{nameof(stack)}.Push(\"Item \" + {i}.ToString());");
+            }
             Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
 
+            Console.WriteLine(@"// Print all items.");
             Console.WriteLine($"foreach (var item in {nameof(stack)})");
             foreach (var item in stack)
             {
                 Console.Write($"{item} | ");
             }
             Console.WriteLine();
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            stack.Pop();
-            Console.WriteLine($"{nameof(stack)}.Pop();");
+            Console.WriteLine(@"// Contains item.");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(1): {stack.Contains(1)}");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
+            Console.WriteLine(@"// Pop items.");
+            var itemPop = stack.Pop();
+            Console.WriteLine($"var itemPop = {nameof(stack)}.Pop();");
+            Console.WriteLine($"item: {itemPop.ToString()}");
+
+            Console.WriteLine(@"// Print all items.");
             Console.WriteLine($"foreach (var item in {nameof(stack)})");
             foreach (var item in stack)
             {
                 Console.Write($"{item} | ");
             }
             Console.WriteLine();
-
             Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Peek items.");
+            var itemPeek = stack.Peek();
+            Console.WriteLine($"var itemPeek = {nameof(stack)}.Peek();");
+            Console.WriteLine($"item: {itemPeek.ToString()}");
+
+            Console.WriteLine(@"// Print all items.");
+            Console.WriteLine($"foreach (var item in {nameof(stack)})");
+            foreach (var item in stack)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+            Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
+            Console.WriteLine($"{nameof(stack)}.stack.Contains(\"Item 9\"): {stack.Contains("Item 9")}");
         }
 
         private static void PrintQueue()

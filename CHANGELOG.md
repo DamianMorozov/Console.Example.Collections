@@ -2,9 +2,10 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.0.37] - 2019-07-18
+## [0.0.38] - 2019-07-18
 ### Updated
 - Main menu.
+- Stack.
 
 ## [0.0.36] - 2019-07-17
 ### Added
