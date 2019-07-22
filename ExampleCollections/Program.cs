@@ -41,15 +41,20 @@ namespace ExampleCollections
             Console.WriteLine("0. Exit from console.");
             Console.WriteLine("1. System.Collections.");
             Console.WriteLine("   11. ArrayList.");
-            Console.WriteLine("   12. Stack.");
-            Console.WriteLine("   13. Queue.");
-            Console.WriteLine("   14. Hashtable.");
-            Console.WriteLine("   15. SortedList.");
-            Console.WriteLine("   16. BitArray (not working yet).");
+            Console.WriteLine("   12. BitArray (not working yet).");
+            Console.WriteLine("   13. CaseInsensitiveComparer (not working yet).");
+            Console.WriteLine("   14. CaseInsensitiveHashCodeProvider (not working yet).");
+            Console.WriteLine("   15. DictionaryBase (not working yet).");
+            Console.WriteLine("   16. Hashtable.");
+            Console.WriteLine("   17. Queue.");
+            Console.WriteLine("   18. SortedList.");
+            Console.WriteLine("   19. Stack.");
+            //Console.WriteLine("   20. StructuralComparisons (not working yet).");
             Console.WriteLine("2. System.Collections.Generic.");
-            Console.WriteLine("   21. LinkedList<T>.");
-            Console.WriteLine("   22. List<T>.");
-            Console.WriteLine("   23. SortedDictionary<T, T>.");
+            Console.WriteLine("   21. Dictionary<TKey, TValue>.");
+            Console.WriteLine("   22. LinkedList<T>.");
+            Console.WriteLine("   23. List<T>.");
+            Console.WriteLine("   24. SortedDictionary<TKey, TValue>.");
             Console.WriteLine("3. System.Collections.Specialized (not working yet).");
             Console.WriteLine("4. System.Collections.Concurrent (not working yet).");
             Console.WriteLine("5. My classes.");
@@ -70,36 +75,52 @@ namespace ExampleCollections
                     PrintArrayList();
                     break;
                 case 12:
-                    isPrintMenu = true;
-                    PrintStack();
+                    //isPrintMenu = true;
+                    //PrintBitArray();
                     break;
                 case 13:
-                    isPrintMenu = true;
-                    PrintQueue();
+                    //isPrintMenu = true;
+                    //PrintCaseInsensitiveComparer();
                     break;
                 case 14:
-                    isPrintMenu = true;
-                    PrintHashtable();
+                    //isPrintMenu = true;
+                    //PrintCaseInsensitiveHashCodeProvider();
                     break;
                 case 15:
-                    isPrintMenu = true;
-                    PrintSortedList();
+                    //isPrintMenu = true;
+                    //PrintDictionaryBase();
                     break;
                 case 16:
                     isPrintMenu = true;
-                    PrintBitArray();
+                    PrintHashtable();
+                    break;
+                case 17:
+                    isPrintMenu = true;
+                    PrintQueue();
+                    break;
+                case 18:
+                    isPrintMenu = true;
+                    PrintSortedList();
+                    break;
+                case 19:
+                    isPrintMenu = true;
+                    PrintStack();
                     break;
                 #endregion
                 #region System.Collections.Generic
                 case 21:
                     isPrintMenu = true;
-                    PrintLinkedList();
+                    PrintDictionary();
                     break;
                 case 22:
                     isPrintMenu = true;
-                    PrintList();
+                    PrintLinkedList();
                     break;
                 case 23:
+                    isPrintMenu = true;
+                    PrintList();
+                    break;
+                case 24:
                     isPrintMenu = true;
                     PrintSortedDictionary();
                     break;
@@ -123,6 +144,18 @@ namespace ExampleCollections
                 Console.Write("Type any key to return in main menu.");
                 Console.ReadKey();
             }
+        }
+
+        private static void PrintAllItems(ICollection items)
+        {
+            Console.WriteLine(@"// Print all items.");
+            //Console.WriteLine($"foreach (var item in {nameof(items)})");
+            foreach (var item in items)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+            Console.WriteLine($"{nameof(items)}.Count: {items.Count}");
         }
 
         #endregion
@@ -168,120 +201,6 @@ namespace ExampleCollections
             }
         }
 
-        private static void PrintStack()
-        {
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of Stack                           ---");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"Stack<T> - collection with LIFO (Last Input First Output).");
-            Console.WriteLine(@"Push - adds an element to first place.");
-            Console.WriteLine(@"Pop - retrieves and returns the first item.");
-            Console.WriteLine(@"Peek - returns the first item without removing it.");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
-            Console.WriteLine(@"// Create new stack.");
-            Stack stack = new Stack();
-            Console.WriteLine($"Stack {nameof(stack)} = new Stack();");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
-            Console.WriteLine(@"// Push items.");
-            for (int i = 1; i <= 5; i++)
-            {
-                stack.Push(i);
-                Console.WriteLine($"{nameof(stack)}.Push({i});");
-            }
-            for (int i = 6; i <= 10; i++)
-            {
-                stack.Push("Item " + i.ToString());
-                Console.WriteLine($"{nameof(stack)}.Push(\"Item \" + {i}.ToString());");
-            }
-            Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
-
-            Console.WriteLine(@"// Print all items.");
-            Console.WriteLine($"foreach (var item in {nameof(stack)})");
-            foreach (var item in stack)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
-            Console.WriteLine(@"// Contains item.");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(1): {stack.Contains(1)}");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(10): {stack.Contains(10)}");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
-            Console.WriteLine(@"// Pop items.");
-            var itemPop = stack.Pop();
-            Console.WriteLine($"var itemPop = {nameof(stack)}.Pop();");
-            Console.WriteLine($"item: {itemPop.ToString()}");
-
-            Console.WriteLine(@"// Print all items.");
-            Console.WriteLine($"foreach (var item in {nameof(stack)})");
-            foreach (var item in stack)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
-            Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
-            Console.WriteLine(@"// Peek items.");
-            var itemPeek = stack.Peek();
-            Console.WriteLine($"var itemPeek = {nameof(stack)}.Peek();");
-            Console.WriteLine($"item: {itemPeek.ToString()}");
-
-            Console.WriteLine(@"// Print all items.");
-            Console.WriteLine($"foreach (var item in {nameof(stack)})");
-            foreach (var item in stack)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
-            Console.WriteLine($"{nameof(stack)}.Count: {stack.Count}");
-            Console.WriteLine($"{nameof(stack)}.stack.Contains(\"Item 9\"): {stack.Contains("Item 9")}");
-        }
-
-        private static void PrintQueue()
-        {
-            Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of Queue                           ---");
-            Console.WriteLine(@"----------------------------------------------------------------------");
-
-            Queue queue = new Queue();
-            Console.WriteLine($"Queue {nameof(queue)} = new Queue();");
-            Console.WriteLine($"for (int i = 1; i <= 10; i++)");
-            for (int i = 1; i <= 10; i++)
-            {
-                queue.Enqueue(i);
-                Console.WriteLine($"{nameof(queue)}.Enqueue({i});");
-            }
-            Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
-            Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
-
-            Console.WriteLine($"foreach (var item in {nameof(queue)})");
-            foreach (var item in queue)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
-
-            queue.Dequeue();
-            Console.WriteLine($"{nameof(queue)}.Dequeue();");
-
-            Console.WriteLine($"foreach (var item in {nameof(queue)})");
-            foreach (var item in queue)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
-
-            Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
-            Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
-        }
-
         private static void PrintHashtable()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -317,6 +236,46 @@ namespace ExampleCollections
             Console.WriteLine();
         }
 
+        private static void PrintQueue()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Example of Queue                           ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"Queue queue - FIFO collection (First Input First Output).");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Queue queue = new Queue();
+            Console.WriteLine($"Queue {nameof(queue)} = new Queue();");
+            Console.WriteLine($"for (int i = 1; i <= 10; i++)");
+            for (int i = 1; i <= 10; i++)
+            {
+                queue.Enqueue(i);
+                Console.WriteLine($"{nameof(queue)}.Enqueue({i});");
+            }
+            Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
+            Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
+
+            Console.WriteLine($"foreach (var item in {nameof(queue)})");
+            foreach (var item in queue)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+
+            queue.Dequeue();
+            Console.WriteLine($"{nameof(queue)}.Dequeue();");
+
+            Console.WriteLine($"foreach (var item in {nameof(queue)})");
+            foreach (var item in queue)
+            {
+                Console.Write($"{item} | ");
+            }
+            Console.WriteLine();
+
+            Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
+            Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
+        }
+
         private static void PrintSortedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -348,6 +307,60 @@ namespace ExampleCollections
             Console.WriteLine();
         }
 
+        private static void PrintStack()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                     Example of Stack                           ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"Stack<T> - LIFO collection (Last Input First Output).");
+            Console.WriteLine(@"Push - adds an element to first place.");
+            Console.WriteLine(@"Pop - retrieves and returns the first item.");
+            Console.WriteLine(@"Peek - returns the first item without removing it.");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Create new stack.");
+            Stack stack = new Stack();
+            Console.WriteLine($"Stack {nameof(stack)} = new Stack();");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Push items.");
+            for (int i = 1; i <= 5; i++)
+            {
+                stack.Push(i);
+                Console.WriteLine($"{nameof(stack)}.Push({i});");
+            }
+            for (int i = 6; i <= 10; i++)
+            {
+                stack.Push("Item " + i.ToString());
+                Console.WriteLine($"{nameof(stack)}.Push(\"Item \" + {i}.ToString());");
+            }
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            PrintAllItems(stack);
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Contains item.");
+            Console.WriteLine($"{nameof(stack)}.Contains(1): {stack.Contains(1)}");
+            Console.WriteLine($"{nameof(stack)}.Contains(10): {stack.Contains(10)}");
+            Console.WriteLine($"{nameof(stack)}.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Pop items.");
+            var itemPop = stack.Pop();
+            Console.WriteLine($"var itemPop = {nameof(stack)}.Pop();");
+            Console.WriteLine($"item: {itemPop.ToString()}");
+
+            PrintAllItems(stack);
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Peek items.");
+            var itemPeek = stack.Peek();
+            Console.WriteLine($"var itemPeek = {nameof(stack)}.Peek();");
+            Console.WriteLine($"item: {itemPeek.ToString()}");
+
+            PrintAllItems(stack);
+        }
+
         private static void PrintBitArray()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -361,6 +374,57 @@ namespace ExampleCollections
 
         #region System.Collections.Generic
 
+        private static void PrintDictionary()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---            Example of Dictionary<TKey, TValue>                 ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"Dictionary<int, string> - LIFO collection (Last Input First Output).");
+            Console.WriteLine(@"Add - adds an element to first place.");
+            Console.WriteLine(@"Pop - retrieves and returns the first item.");
+            Console.WriteLine(@"Peek - returns the first item without removing it.");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            Console.WriteLine($"Dictionary<int, string> {nameof(dictionary)} = new Dictionary<int, string>();");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Add items.");
+            for (int i = 1; i < 6; i++)
+            {
+                dictionary.Add(i, "Example " + i.ToString());
+                Console.WriteLine($"{nameof(dictionary)}.Add({i}, \"Example \" + {i}.ToString());");
+            }
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            PrintAllItems(dictionary);
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Remove items.");
+            dictionary.Remove(2);
+            Console.WriteLine($@"{nameof(dictionary)}.Remove(2);");
+            dictionary.Remove(4);
+            Console.WriteLine($@"{nameof(dictionary)}.Remove(4);");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            PrintAllItems(dictionary);
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Init Dictionary in C# 5.");
+            Dictionary<string, string> dictionaryCountry5 = new Dictionary<string, string>()
+            { { "Russia", "Moscow"}, { "France", "Paris"}, { "Germany", "Berlin"} };
+            Console.WriteLine($"Dictionary<string, string> {nameof(dictionaryCountry5)} = new Dictionary<string, string>()");
+            Console.WriteLine("{ { \"Russia\", \"Moscow\"}, { \"France\", \"Paris\"}, { \"Germany\", \"Berlin\"} };");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Init Dictionary in C# 6.");
+            Dictionary<string, string> dictionaryCountry6 = new Dictionary<string, string>()
+            { ["Russia"] = "Moscow", ["France"] = "Paris", ["Germany"] = "Berlin" };
+            Console.WriteLine($"Dictionary<string, string> {nameof(dictionaryCountry6)} = new Dictionary<string, string>()");
+            Console.WriteLine("{ [\"Russia\"] = \"Moscow\", [\"France\"] = \"Paris\", [\"Germany\"] = \"Berlin\" };");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+        }
+
         private static void PrintLinkedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -371,13 +435,10 @@ namespace ExampleCollections
             Console.WriteLine("string[] words = { \"the\",\"fox\", \"jumps\", \"over\", \"the\", \"dog\" };");
             LinkedList<string> linkedList = new LinkedList<string>(words);
             Console.WriteLine($"LinkedList<string> {nameof(linkedList)} = new LinkedList<string>();");
-            Console.WriteLine($"foreach (var item in {nameof(linkedList)})");
-            Console.Write($"  Items: ");
-            foreach (var item in linkedList)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            PrintAllItems(linkedList);
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
             linkedList.AddFirst("Example start");
             Console.WriteLine($"{nameof(linkedList)}.linkedList.AddFirst(\"Example start\");");
@@ -385,14 +446,9 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(linkedList)}.linkedList.AddFirst(\"Example after the\");");
             linkedList.AddLast("Example end");
             Console.WriteLine($"{nameof(linkedList)}.linkedList.AddLast(\"Example end\");");
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Console.WriteLine($"foreach (var item in {nameof(linkedList)})");
-            Console.Write($"  Items: ");
-            foreach (var item in linkedList)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(linkedList);
         }
 
         private static void PrintList()
@@ -412,30 +468,25 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(list)}.Add(\"Example 2\");");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Console.WriteLine($"foreach (var item in {nameof(list)})");
-            foreach (var item in list)
-            {
-                Console.WriteLine($"  item: {item}");
-            }
-            Console.WriteLine($"{nameof(list)}.Count: " + list.Count);
+            PrintAllItems(list);
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Contains item.");
             Console.WriteLine($"{nameof(list)}.Contains(\"Example 2\"): " + list.Contains("Example 2"));
             Console.WriteLine($"{nameof(list)}.Contains(\"Example 33\"): " + list.Contains("Example 33"));
             Console.WriteLine($"{nameof(list)}[1]: " + list[1]);
             list.RemoveAt(1);
             Console.WriteLine($"{nameof(list)}.RemoveAt(1);");
             Console.WriteLine($"{nameof(list)}[1]: " + list[1]);
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Console.WriteLine($"foreach (var item in {nameof(list)})");
-            foreach (var item in list)
-            {
-                Console.WriteLine($"  item: {item}");
-            }
+            PrintAllItems(list);
         }
 
         private static void PrintSortedDictionary()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---          Example of SortedDictionary<TKey, TValue>            ---");
+            Console.WriteLine(@"---          Example of SortedDictionary<TKey, TValue>             ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
@@ -449,10 +500,10 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"dib\", \"paint.exe\");");
             sortedDictionary.Add("rtf", "wordpad.exe");
             Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"rtf\", \"wordpad.exe\");");
-            foreach (KeyValuePair<string, string> item in sortedDictionary)
-            {
-                Console.WriteLine($"{nameof(sortedDictionary)}[\"" + item.Key + $"\"] = {item.Value}");
-            }
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            PrintAllItems(sortedDictionary);
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
             try
             {
@@ -476,27 +527,19 @@ namespace ExampleCollections
                 Console.WriteLine("Key = \"tif\" is not found.");
             }
             Console.WriteLine($"sortedDictionary.ContainsKey(\"rtf\"): " + sortedDictionary.ContainsKey("rtf"));
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            foreach (KeyValuePair<string, string> item in sortedDictionary)
-            {
-                Console.WriteLine($"{nameof(sortedDictionary)}[\"" + item.Key + $"\"] = {item.Value}");
-            }
+            PrintAllItems(sortedDictionary);
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
             ICollection keys = sortedDictionary.Keys;
             Console.WriteLine($"ICollection {nameof(keys)} = {nameof(sortedDictionary)}.Keys;");
-            foreach (var key in keys)
-            {
-                Console.Write(key + " | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(keys);
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
             ICollection values = sortedDictionary.Values;
             Console.WriteLine($"ICollection {nameof(values)} = {nameof(sortedDictionary)}.Values;");
-            foreach (var value in values)
-            {
-                Console.Write(value + " | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(values);
         }
 
         #endregion

@@ -6,16 +6,16 @@ C# 7.3
 
 System.Collections
   - ArrayList
-  - Stack
-  - Queue
   - Hashtable
+  - Queue
   - SortedList
-  - BitArray
+  - Stack
 
 System.Collections.Generic
+- Dictionary<TKey, TValue>
 - LinkedList<T>
 - List<T>
-- SortedDictionary<T, T>
+- SortedDictionary<TKey, TValue>
 
 System.Collections.Specialized
 - 
