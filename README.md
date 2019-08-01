@@ -18,7 +18,7 @@ System.Collections.Generic
 - SortedDictionary<TKey, TValue>
 
 System.Collections.Specialized
-- 
+- ObservableCollection<T>
 
 System.Collections.Concurrent
 - 

@@ -2,6 +2,10 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.40] - 2019-08-01
+### Added
+- ObservableCollection.
+
 ## [0.0.39] - 2019-07-22
 ### Added
 - Dictionary.

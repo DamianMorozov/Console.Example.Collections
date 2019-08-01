@@ -4,6 +4,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 
 namespace ExampleCollections
@@ -40,25 +42,25 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine("0. Exit from console.");
             Console.WriteLine("1. System.Collections.");
-            Console.WriteLine("   11. ArrayList.");
-            Console.WriteLine("   12. BitArray (not working yet).");
-            Console.WriteLine("   13. CaseInsensitiveComparer (not working yet).");
-            Console.WriteLine("   14. CaseInsensitiveHashCodeProvider (not working yet).");
-            Console.WriteLine("   15. DictionaryBase (not working yet).");
-            Console.WriteLine("   16. Hashtable.");
-            Console.WriteLine("   17. Queue.");
-            Console.WriteLine("   18. SortedList.");
-            Console.WriteLine("   19. Stack.");
-            //Console.WriteLine("   20. StructuralComparisons (not working yet).");
+            Console.WriteLine("   10. ArrayList.");
+            Console.WriteLine("   11. BitArray (not working yet).");
+            Console.WriteLine("   12. CaseInsensitiveComparer (not working yet).");
+            Console.WriteLine("   13. CaseInsensitiveHashCodeProvider (not working yet).");
+            Console.WriteLine("   14. DictionaryBase (not working yet).");
+            Console.WriteLine("   15. Hashtable.");
+            Console.WriteLine("   16. Queue.");
+            Console.WriteLine("   17. SortedList.");
+            Console.WriteLine("   18. Stack.");
             Console.WriteLine("2. System.Collections.Generic.");
-            Console.WriteLine("   21. Dictionary<TKey, TValue>.");
-            Console.WriteLine("   22. LinkedList<T>.");
-            Console.WriteLine("   23. List<T>.");
-            Console.WriteLine("   24. SortedDictionary<TKey, TValue>.");
-            Console.WriteLine("3. System.Collections.Specialized (not working yet).");
+            Console.WriteLine("   20. Dictionary<TKey, TValue>.");
+            Console.WriteLine("   21. LinkedList<T>.");
+            Console.WriteLine("   22. List<T>.");
+            Console.WriteLine("   23. SortedDictionary<TKey, TValue>.");
+            Console.WriteLine("3. System.Collections.Specialized.");
+            Console.WriteLine("   30. ObservableCollection<T>.");
             Console.WriteLine("4. System.Collections.Concurrent (not working yet).");
             Console.WriteLine("5. My classes.");
-            Console.WriteLine("   51. Filling byte arrays.");
+            Console.WriteLine("   50. Filling byte arrays.");
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.Write("Type switch: ");
         }
@@ -70,69 +72,72 @@ namespace ExampleCollections
             switch (numberMenu)
             {
                 #region System.Collections
-                case 11:
+                case 10:
                     isPrintMenu = true;
                     PrintArrayList();
                     break;
-                case 12:
+                case 11:
                     //isPrintMenu = true;
                     //PrintBitArray();
                     break;
-                case 13:
+                case 12:
                     //isPrintMenu = true;
                     //PrintCaseInsensitiveComparer();
                     break;
-                case 14:
+                case 13:
                     //isPrintMenu = true;
                     //PrintCaseInsensitiveHashCodeProvider();
                     break;
-                case 15:
+                case 14:
                     //isPrintMenu = true;
                     //PrintDictionaryBase();
                     break;
-                case 16:
+                case 15:
                     isPrintMenu = true;
                     PrintHashtable();
                     break;
-                case 17:
+                case 16:
                     isPrintMenu = true;
                     PrintQueue();
                     break;
-                case 18:
+                case 17:
                     isPrintMenu = true;
                     PrintSortedList();
                     break;
-                case 19:
+                case 18:
                     isPrintMenu = true;
                     PrintStack();
                     break;
                 #endregion
                 #region System.Collections.Generic
-                case 21:
+                case 20:
                     isPrintMenu = true;
                     PrintDictionary();
                     break;
-                case 22:
+                case 21:
                     isPrintMenu = true;
                     PrintLinkedList();
                     break;
-                case 23:
+                case 22:
                     isPrintMenu = true;
                     PrintList();
                     break;
-                case 24:
+                case 23:
                     isPrintMenu = true;
                     PrintSortedDictionary();
                     break;
                 #endregion
                 #region System.Collections.Specialized
-                //
+                case 30:
+                    isPrintMenu = true;
+                    PrintObservableCollection();
+                    break;
                 #endregion
                 #region System.Collections.Concurrent
                 //
                 #endregion
                 #region My classes
-                case 51:
+                case 50:
                     isPrintMenu = true;
                     PrintByteArraysFilling();
                     break;
@@ -545,6 +550,64 @@ namespace ExampleCollections
         #endregion
 
         #region System.Collections.Specialized
+
+        private static void PrintObservableCollection()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---             Example of ObservableCollection<T>                 ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Create new ObservableCollection.");
+            ObservableCollection<object> observableCollection = new ObservableCollection<object>();
+            Console.WriteLine($"ObservableCollection<object> {nameof(observableCollection)} = new ObservableCollection<object>();");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Add items.");
+            for (int i = 1; i <= 5; i++)
+            {
+                observableCollection.Add("Item " + i);
+                Console.WriteLine($"{nameof(observableCollection)}.observableCollection.Add(\"Item {i}\");");
+            }
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            observableCollection.CollectionChanged += observableCollection_CollectionChanged;
+            Console.WriteLine($@"{nameof(observableCollection)}.CollectionChanged += observableCollection_CollectionChanged;");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Add item.");
+            Console.WriteLine($"{nameof(observableCollection)}.observableCollection.Add(\"Item new\");");
+            observableCollection.Add("Item new");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Remove item.");
+            Console.WriteLine($"{nameof(observableCollection)}.observableCollection.Remove(\"Item 2\");");
+            observableCollection.Remove("Item 2");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Replace item.");
+            Console.WriteLine($"{nameof(observableCollection)}[3] = \"Item 3 new\";");
+            observableCollection[3] = "Item 3 new";
+        }
+
+        private static void observableCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    object newObject = e.NewItems[0] as object;
+                    Console.WriteLine($"- The item \"{newObject}\" was added.");
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    object oldObject = e.OldItems[0] as object;
+                    Console.WriteLine($"- The item \"{oldObject}\" was removed.");
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    object newObject1 = e.NewItems[0] as object;
+                    object oldObject1 = e.OldItems[0] as object;
+                    Console.WriteLine($"- The item \"{oldObject1}\" was replaced \"{newObject1}\".");
+                    break;
+            }
+        }
 
         #endregion
 
