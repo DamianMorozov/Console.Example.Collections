@@ -289,24 +289,26 @@ namespace ExampleCollections
             Console.WriteLine(@"---                     Example of SortedList                      ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            SortedList sortedList = new SortedList();
-            Console.WriteLine($"SortedList {nameof(sortedList)} = new SortedList();");
-            for (int i = 10; i > 0; i--)
+            var sortedList = new SortedList();
+            Console.WriteLine("var sortedList = new SortedList();");
+            for (var i = 10; i > 0; i--)
             {
                 sortedList.Add(i, "Value " + i.ToString());
                 Console.WriteLine($"{nameof(sortedList)}.Add(i, \"Value " + i.ToString() + "\");");
             }
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            ICollection keys = sortedList.Keys;
-            Console.WriteLine($"ICollection {nameof(keys)} = {nameof(sortedList)}.Keys;");
+            var keys = sortedList.Keys;
+            Console.WriteLine("var keys = sortedList.Keys;");
             foreach (var key in keys)
             {
                 Console.Write(key + " | ");
             }
             Console.WriteLine();
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            ICollection values = sortedList.Values;
-            Console.WriteLine($"ICollection {nameof(values)} = {nameof(sortedList)}.Values;");
+            var values = sortedList.Values;
+            Console.WriteLine("var values = sortedList.Values;");
             foreach (var value in values)
             {
                 Console.Write(value + " | ");
