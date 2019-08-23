@@ -248,16 +248,16 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"---                     Example of Queue                           ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"Queue queue - FIFO collection (First Input First Output).");
+            Console.WriteLine(@"Queue - FIFO collection (First Input First Output).");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Queue queue = new Queue();
-            Console.WriteLine($"Queue {nameof(queue)} = new Queue();");
+            var queue = new Queue();
+            Console.WriteLine("var queue = new Queue();");
             Console.WriteLine("for (int i = 1; i <= 10; i++)");
-            for (int i = 1; i <= 10; i++)
+            for (var i = 1; i <= 10; i++)
             {
                 queue.Enqueue(i);
-                Console.WriteLine($"{nameof(queue)}.Enqueue({i});");
+                Console.WriteLine($"queue.Enqueue({i});");
             }
             Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
             Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
