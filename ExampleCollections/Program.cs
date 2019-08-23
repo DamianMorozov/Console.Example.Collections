@@ -328,20 +328,21 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Create new stack.");
-            Stack stack = new Stack();
-            Console.WriteLine($"Stack {nameof(stack)} = new Stack();");
+            var stack = new Stack();
+            Console.WriteLine("var stack = new Stack();");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Push items.");
-            for (int i = 1; i <= 5; i++)
+            for (var i = 1; i <= 5; i++)
             {
                 stack.Push(i);
-                Console.WriteLine($"{nameof(stack)}.Push({i});");
+                Console.WriteLine($"stack.Push({i});");
             }
-            for (int i = 6; i <= 10; i++)
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            for (var i = 6; i <= 10; i++)
             {
                 stack.Push("Item " + i.ToString());
-                Console.WriteLine($"{nameof(stack)}.Push(\"Item \" + {i}.ToString());");
+                Console.WriteLine($"stack.Push(\"Item \" + {i}.ToString());");
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
 
@@ -349,14 +350,14 @@ namespace ExampleCollections
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Contains item.");
-            Console.WriteLine($"{nameof(stack)}.Contains(1): {stack.Contains(1)}");
-            Console.WriteLine($"{nameof(stack)}.Contains(10): {stack.Contains(10)}");
-            Console.WriteLine($"{nameof(stack)}.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
+            Console.WriteLine($"stack.Contains(1): {stack.Contains(1)}");
+            Console.WriteLine($"stack.Contains(10): {stack.Contains(10)}");
+            Console.WriteLine($"stack.Contains(\"Item 10\"): {stack.Contains("Item 10")}");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Pop items.");
             var itemPop = stack.Pop();
-            Console.WriteLine($"var itemPop = {nameof(stack)}.Pop();");
+            Console.WriteLine("var itemPop = stack.Pop();");
             Console.WriteLine($"item: {itemPop}");
 
             PrintAllItems(stack);
