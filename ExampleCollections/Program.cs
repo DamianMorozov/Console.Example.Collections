@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ExampleCollections
 {
@@ -212,28 +213,29 @@ namespace ExampleCollections
             Console.WriteLine(@"---                     Example of Hashtable                       ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Hashtable hashtable = new Hashtable();
-            Console.WriteLine($"Hashtable {nameof(hashtable)} = new Hashtable();");
+            var hashtable = new Hashtable();
+            Console.WriteLine("var hashtable = new Hashtable();");
             hashtable.Add("001", ".NET");
-            Console.WriteLine($"{nameof(hashtable)}.Add(\"001\", \".NET\");");
+            Console.WriteLine("hashtable.Add(\"001\", \".NET\");");
             hashtable.Add("002", "C#");
-            Console.WriteLine($"{nameof(hashtable)}.Add(\"002\", \"C#\");");
+            Console.WriteLine("hashtable.Add(\"002\", \"C#\");");
             hashtable.Add("003", "ASP.NET");
-            Console.WriteLine($"{nameof(hashtable)}.Add(\"003\", \"ASP.NET\");");
-            Console.WriteLine($"{nameof(hashtable)}.ContainsKey(\"003\"): " + hashtable.ContainsKey("003"));
-            Console.WriteLine($"{nameof(hashtable)}.ContainsValue(\"C#\"): " + hashtable.ContainsValue("C#"));
-            Console.WriteLine();
+            Console.WriteLine("hashtable.Add(\"003\", \"ASP.NET\");");
+            Console.WriteLine($"hashtable.ContainsKey(\"003\"): {hashtable.ContainsKey("003")}");
+            Console.WriteLine($"hashtable.ContainsValue(\"C#\"): {hashtable.ContainsValue("C#")}");
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            ICollection keys = hashtable.Keys;
-            Console.WriteLine($"ICollection {nameof(keys)} = {nameof(hashtable)}.Keys;");
+            var keys = hashtable.Keys;
+            Console.WriteLine("var keys = hashtable.Keys;");
             foreach (var key in keys)
             {
                 Console.Write(key + " | ");
             }
             Console.WriteLine();
+            Console.WriteLine(@"----------------------------------------------------------------------");
 
-            ICollection values = hashtable.Values;
-            Console.WriteLine($"ICollection {nameof(values)} = {nameof(hashtable)}.Values;");
+            var values = hashtable.Values;
+            Console.WriteLine("var values = hashtable.Values;");
             foreach (var value in values)
             {
                 Console.Write(value + " | ");
@@ -251,7 +253,7 @@ namespace ExampleCollections
 
             Queue queue = new Queue();
             Console.WriteLine($"Queue {nameof(queue)} = new Queue();");
-            Console.WriteLine($"for (int i = 1; i <= 10; i++)");
+            Console.WriteLine("for (int i = 1; i <= 10; i++)");
             for (int i = 1; i <= 10; i++)
             {
                 queue.Enqueue(i);
@@ -353,7 +355,7 @@ namespace ExampleCollections
             Console.WriteLine(@"// Pop items.");
             var itemPop = stack.Pop();
             Console.WriteLine($"var itemPop = {nameof(stack)}.Pop();");
-            Console.WriteLine($"item: {itemPop.ToString()}");
+            Console.WriteLine($"item: {itemPop}");
 
             PrintAllItems(stack);
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -361,7 +363,7 @@ namespace ExampleCollections
             Console.WriteLine(@"// Peek items.");
             var itemPeek = stack.Peek();
             Console.WriteLine($"var itemPeek = {nameof(stack)}.Peek();");
-            Console.WriteLine($"item: {itemPeek.ToString()}");
+            Console.WriteLine($"item: {itemPeek}");
 
             PrintAllItems(stack);
         }
@@ -531,7 +533,7 @@ namespace ExampleCollections
             {
                 Console.WriteLine("Key = \"tif\" is not found.");
             }
-            Console.WriteLine($"sortedDictionary.ContainsKey(\"rtf\"): " + sortedDictionary.ContainsKey("rtf"));
+            Console.WriteLine("sortedDictionary.ContainsKey(\"rtf\"): " + sortedDictionary.ContainsKey("rtf"));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             PrintAllItems(sortedDictionary);
