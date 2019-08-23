@@ -60,8 +60,11 @@ namespace ExampleCollections
             Console.WriteLine("3. System.Collections.Specialized.");
             Console.WriteLine("   30. ObservableCollection<T>.");
             Console.WriteLine("4. System.Collections.Concurrent (not working yet).");
-            Console.WriteLine("5. My classes.");
+            Console.WriteLine("5. My methods.");
             Console.WriteLine("   50. Filling byte arrays.");
+            Console.WriteLine("6. IEnumerable and IEnumerator.");
+            Console.WriteLine("   60. IEnumerator.");
+            Console.WriteLine("   61. IEnumerable and IEnumerator.");
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.Write("Type switch: ");
         }
@@ -137,10 +140,20 @@ namespace ExampleCollections
                 #region System.Collections.Concurrent
                 //
                 #endregion
-                #region My classes
+                #region My methods
                 case 50:
                     isPrintMenu = true;
                     PrintByteArraysFilling();
+                    break;
+                #endregion
+                #region IEnumerable and IEnumerator
+                case 60:
+                    isPrintMenu = true;
+                    PrintIEnumerator();
+                    break;
+                case 61:
+                    isPrintMenu = true;
+                    PrintIEnumerable();
                     break;
                 #endregion
             }
@@ -377,7 +390,7 @@ namespace ExampleCollections
             Console.WriteLine(@"---                     Example of BitArray                        ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            BitArray bitArray = new BitArray(10);
+            var bitArray = new BitArray(10);
         }
 
         #endregion
@@ -620,7 +633,7 @@ namespace ExampleCollections
 
         #endregion
 
-        #region My classes
+        #region My methods
 
         private static void PrintByteArraysFilling()
         {
@@ -678,8 +691,72 @@ namespace ExampleCollections
             stopWatch.Stop();
             Console.WriteLine($@" | Elapsed time: {stopWatch.Elapsed}");
             Console.WriteLine(@"------------------------------------+---------------------------------");
-        } 
-        
+        }
+
         #endregion
+
+        #region IEnumerable and IEnumerator
+
+        private static void PrintIEnumerator()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                  Example of IEnumerator                        ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Create new IEnumerator.");
+            int[] numbers = { 2, 14, 26, 38, 40 };
+            Console.WriteLine(@"int[] numbers = { 0, 2, 4, 6, 8, 10};");
+            var enumerator = numbers.GetEnumerator();
+            Console.WriteLine(@"var enumerator = numbers.GetEnumerator();");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            PrintAllItems(numbers);
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine("while (enumerator.MoveNext())");
+                if (enumerator.Current != null)
+                {
+                    var item = (int)enumerator.Current;
+                    Console.WriteLine($"var item = (int)enumerator.Current;  // {item}");
+                }
+                else
+                    Console.WriteLine("if (enumerator.Current != null)");
+            }
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            enumerator.Reset();
+            Console.WriteLine("enumerator.Reset();");
+            enumerator.MoveNext();
+            Console.WriteLine("enumerator.MoveNext();");
+            Console.WriteLine($"enumerator.Current: {enumerator.Current}");
+        }
+
+        private static void PrintIEnumerable()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                  Example of IEnumerable                        ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Create new IEnumerable.");
+            var week = new Week();
+            Console.WriteLine("var week = new Week();");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine("foreach (var day in week)");
+            foreach (var day in week)
+            {
+                Console.WriteLine($"day: {day}");
+            }
+        }
+
+        #endregion
+    }
+
+    internal class Week : IEnumerable
+    {
+        private readonly string[] _days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+        public IEnumerator GetEnumerator() => _days.GetEnumerator();
     }
 }
