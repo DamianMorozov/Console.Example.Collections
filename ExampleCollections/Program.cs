@@ -165,16 +165,17 @@ namespace ExampleCollections
             }
         }
 
-        private static void PrintAllItems(ICollection items)
+        private static void PrintAllItems(IEnumerable items, string name)
         {
-            Console.WriteLine(@"// Print all items.");
-            //Console.WriteLine($"foreach (var item in {nameof(items)})");
+            Console.WriteLine($@"// Print all {(string.IsNullOrEmpty(name) ? "items" : name)}.");
+            var count = 0;
             foreach (var item in items)
             {
                 Console.Write($"{item} | ");
+                count++;
             }
+            Console.Write($"Count: {count}");
             Console.WriteLine();
-            Console.WriteLine($"{nameof(items)}.Count: {items.Count}");
         }
 
         #endregion
@@ -198,11 +199,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(arrayList)}.Add(true);");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Console.WriteLine($"foreach (var item in {nameof(arrayList)})");
-            foreach (var item in arrayList)
-            {
-                Console.WriteLine($"  item: {item}");
-            }
+            PrintAllItems(arrayList, nameof(arrayList));
             Console.WriteLine($"{nameof(arrayList)}.Count: " + arrayList.Count);
             Console.WriteLine($"{nameof(arrayList)}.Contains(1): " + arrayList.Contains(1));
             Console.WriteLine($"{nameof(arrayList)}.Contains(2): " + arrayList.Contains(2));
@@ -213,11 +210,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(arrayList)}.RemoveAt(1);");
             Console.WriteLine($"{nameof(arrayList)}[1]: " + arrayList[1]);
 
-            Console.WriteLine($"foreach (var item in {nameof(arrayList)})");
-            foreach (var item in arrayList)
-            {
-                Console.WriteLine($"  item: {item}");
-            }
+            PrintAllItems(arrayList, nameof(arrayList));
         }
 
         private static void PrintHashtable()
@@ -238,22 +231,10 @@ namespace ExampleCollections
             Console.WriteLine($"hashtable.ContainsValue(\"C#\"): {hashtable.ContainsValue("C#")}");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            var keys = hashtable.Keys;
-            Console.WriteLine("var keys = hashtable.Keys;");
-            foreach (var key in keys)
-            {
-                Console.Write(key + " | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(hashtable.Keys, nameof(hashtable.Keys));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            var values = hashtable.Values;
-            Console.WriteLine("var values = hashtable.Values;");
-            foreach (var value in values)
-            {
-                Console.Write(value + " | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(hashtable.Values, nameof(hashtable.Values));
         }
 
         private static void PrintQueue()
@@ -275,22 +256,12 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
             Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
 
-            Console.WriteLine($"foreach (var item in {nameof(queue)})");
-            foreach (var item in queue)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(queue, nameof(queue));
 
             queue.Dequeue();
             Console.WriteLine($"{nameof(queue)}.Dequeue();");
 
-            Console.WriteLine($"foreach (var item in {nameof(queue)})");
-            foreach (var item in queue)
-            {
-                Console.Write($"{item} | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(queue, nameof(queue));
 
             Console.WriteLine($"{nameof(queue)}.Count: {queue.Count}");
             Console.WriteLine($"{nameof(queue)}.stack.Contains(1): {queue.Contains(1)}");
@@ -311,22 +282,10 @@ namespace ExampleCollections
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            var keys = sortedList.Keys;
-            Console.WriteLine("var keys = sortedList.Keys;");
-            foreach (var key in keys)
-            {
-                Console.Write(key + " | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(sortedList.Keys, nameof(sortedList.Keys));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            var values = sortedList.Values;
-            Console.WriteLine("var values = sortedList.Values;");
-            foreach (var value in values)
-            {
-                Console.Write(value + " | ");
-            }
-            Console.WriteLine();
+            PrintAllItems(sortedList.Values, nameof(sortedList.Values));
         }
 
         private static void PrintStack()
@@ -359,7 +318,7 @@ namespace ExampleCollections
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(stack);
+            PrintAllItems(stack, nameof(stack));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Contains item.");
@@ -373,7 +332,7 @@ namespace ExampleCollections
             Console.WriteLine("var itemPop = stack.Pop();");
             Console.WriteLine($"item: {itemPop}");
 
-            PrintAllItems(stack);
+            PrintAllItems(stack, nameof(stack));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Peek items.");
@@ -381,7 +340,7 @@ namespace ExampleCollections
             Console.WriteLine($"var itemPeek = {nameof(stack)}.Peek();");
             Console.WriteLine($"item: {itemPeek}");
 
-            PrintAllItems(stack);
+            PrintAllItems(stack, nameof(stack));
         }
 
         private static void PrintBitArray()
@@ -420,7 +379,7 @@ namespace ExampleCollections
             }
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(dictionary);
+            PrintAllItems(dictionary, nameof(dictionary));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Remove items.");
@@ -430,7 +389,7 @@ namespace ExampleCollections
             Console.WriteLine($@"{nameof(dictionary)}.Remove(4);");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(dictionary);
+            PrintAllItems(dictionary, nameof(dictionary));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Init Dictionary in C# 5.");
@@ -460,7 +419,7 @@ namespace ExampleCollections
             Console.WriteLine($"LinkedList<string> {nameof(linkedList)} = new LinkedList<string>();");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(linkedList);
+            PrintAllItems(linkedList, nameof(linkedList));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             linkedList.AddFirst("Example start");
@@ -471,7 +430,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(linkedList)}.linkedList.AddLast(\"Example end\");");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(linkedList);
+            PrintAllItems(linkedList, nameof(linkedList));
         }
 
         private static void PrintList()
@@ -491,7 +450,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(list)}.Add(\"Example 2\");");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(list);
+            PrintAllItems(list, nameof(list));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Contains item.");
@@ -503,7 +462,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(list)}[1]: " + list[1]);
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(list);
+            PrintAllItems(list, nameof(list));
         }
 
         private static void PrintSortedDictionary()
@@ -525,7 +484,7 @@ namespace ExampleCollections
             Console.WriteLine($"{nameof(sortedDictionary)}.Add(\"rtf\", \"wordpad.exe\");");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(sortedDictionary);
+            PrintAllItems(sortedDictionary, nameof(sortedDictionary));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             try
@@ -552,17 +511,13 @@ namespace ExampleCollections
             Console.WriteLine("sortedDictionary.ContainsKey(\"rtf\"): " + sortedDictionary.ContainsKey("rtf"));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            PrintAllItems(sortedDictionary);
+            PrintAllItems(sortedDictionary, nameof(sortedDictionary));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            ICollection keys = sortedDictionary.Keys;
-            Console.WriteLine($"ICollection {nameof(keys)} = {nameof(sortedDictionary)}.Keys;");
-            PrintAllItems(keys);
+            PrintAllItems(sortedDictionary.Keys, nameof(sortedDictionary.Keys));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            ICollection values = sortedDictionary.Values;
-            Console.WriteLine($"ICollection {nameof(values)} = {nameof(sortedDictionary)}.Values;");
-            PrintAllItems(values);
+            PrintAllItems(sortedDictionary.Values, nameof(sortedDictionary.Values));
         }
 
         #endregion
@@ -709,7 +664,7 @@ namespace ExampleCollections
             var enumerator = numbers.GetEnumerator();
             Console.WriteLine(@"var enumerator = numbers.GetEnumerator();");
             Console.WriteLine(@"----------------------------------------------------------------------");
-            PrintAllItems(numbers);
+            PrintAllItems(numbers, nameof(numbers));
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             while (enumerator.MoveNext())
@@ -743,11 +698,7 @@ namespace ExampleCollections
             Console.WriteLine("var week = new Week();");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
-            Console.WriteLine("foreach (var day in week)");
-            foreach (var day in week)
-            {
-                Console.WriteLine($"day: {day}");
-            }
+            PrintAllItems(week, nameof(week));
         }
 
         #endregion

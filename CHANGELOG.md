@@ -2,6 +2,10 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.50] - 2019-10-24
+### Updated
+- PrintAllItems method.
+
 ## [0.0.46] - 2019-08-23
 ### Updated
 - Hashtable.
