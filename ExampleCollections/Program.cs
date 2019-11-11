@@ -65,6 +65,8 @@ namespace ExampleCollections
             Console.WriteLine("6. IEnumerable and IEnumerator.");
             Console.WriteLine("   60. IEnumerator.");
             Console.WriteLine("   61. IEnumerable and IEnumerator.");
+            Console.WriteLine("7. Linked lists.");
+            Console.WriteLine("   70. Singly linked list.");
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.Write("Type switch: ");
         }
@@ -156,6 +158,12 @@ namespace ExampleCollections
                     PrintIEnumerable();
                     break;
                 #endregion
+                #region Linked lists
+                case 70:
+                    isPrintMenu = true;
+                    PrintLinkedListSingly();
+                    break;
+                #endregion
             }
             if (isPrintMenu)
             {
@@ -185,7 +193,7 @@ namespace ExampleCollections
         private static void PrintArrayList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of ArrayList                       ---");
+            Console.WriteLine(@"---                          ArrayList                             ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             ArrayList arrayList = new ArrayList();
@@ -216,7 +224,7 @@ namespace ExampleCollections
         private static void PrintHashtable()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of Hashtable                       ---");
+            Console.WriteLine(@"---                          Hashtable                             ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             var hashtable = new Hashtable();
@@ -240,7 +248,7 @@ namespace ExampleCollections
         private static void PrintQueue()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of Queue                           ---");
+            Console.WriteLine(@"---                          Queue                                 ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"Queue - FIFO collection (First Input First Output).");
             Console.WriteLine(@"----------------------------------------------------------------------");
@@ -270,7 +278,7 @@ namespace ExampleCollections
         private static void PrintSortedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of SortedList                      ---");
+            Console.WriteLine(@"---                          SortedList                            ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             var sortedList = new SortedList();
@@ -291,7 +299,7 @@ namespace ExampleCollections
         private static void PrintStack()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of Stack                           ---");
+            Console.WriteLine(@"---                          Stack                                 ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"Stack<T> - LIFO collection (Last Input First Output).");
             Console.WriteLine(@"Push - adds an element to first place.");
@@ -346,7 +354,7 @@ namespace ExampleCollections
         private static void PrintBitArray()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of BitArray                        ---");
+            Console.WriteLine(@"---                          BitArray                              ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             var bitArray = new BitArray(10);
@@ -359,7 +367,7 @@ namespace ExampleCollections
         private static void PrintDictionary()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---            Example of Dictionary<TKey, TValue>                 ---");
+            Console.WriteLine(@"---                 Dictionary<TKey, TValue>                       ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
             Console.WriteLine(@"Dictionary<int, string> - LIFO collection (Last Input First Output).");
             Console.WriteLine(@"Add - adds an element to first place.");
@@ -410,7 +418,7 @@ namespace ExampleCollections
         private static void PrintLinkedList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                  Example of LinkedList<T>                      ---");
+            Console.WriteLine(@"---                       LinkedList<T>                           ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             string[] words = { "the", "fox", "jumps", "over", "the", "dog" };
@@ -436,7 +444,7 @@ namespace ExampleCollections
         private static void PrintList()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                     Example of List<T>                         ---");
+            Console.WriteLine(@"---                          List<T>                               ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             List<string> list = new List<string>();
@@ -468,7 +476,7 @@ namespace ExampleCollections
         private static void PrintSortedDictionary()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---          Example of SortedDictionary<TKey, TValue>             ---");
+            Console.WriteLine(@"---               SortedDictionary<TKey, TValue>                   ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
@@ -527,7 +535,7 @@ namespace ExampleCollections
         private static void PrintObservableCollection()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---             Example of ObservableCollection<T>                 ---");
+            Console.WriteLine(@"---                  ObservableCollection<T>                       ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Create new ObservableCollection.");
@@ -593,7 +601,7 @@ namespace ExampleCollections
         private static void PrintByteArraysFilling()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                Examples of filling byte arrays                 ---");
+            Console.WriteLine(@"---                      Filling byte arrays                       ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             ClassArrayByte arrayByte = new ClassArrayByte();
@@ -655,7 +663,7 @@ namespace ExampleCollections
         private static void PrintIEnumerator()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                  Example of IEnumerator                        ---");
+            Console.WriteLine(@"---                       IEnumerator                              ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Create new IEnumerator.");
@@ -690,7 +698,7 @@ namespace ExampleCollections
         private static void PrintIEnumerable()
         {
             Console.WriteLine(@"----------------------------------------------------------------------");
-            Console.WriteLine(@"---                  Example of IEnumerable                        ---");
+            Console.WriteLine(@"---                       IEnumerable                              ---");
             Console.WriteLine(@"----------------------------------------------------------------------");
 
             Console.WriteLine(@"// Create new IEnumerable.");
@@ -702,6 +710,30 @@ namespace ExampleCollections
         }
 
         #endregion
+
+        #region Linked lists
+
+        private static void PrintLinkedListSingly()
+        {
+            Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                    Singly linked list                          ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            Console.WriteLine(@"// Create new Singly linked list.");
+            var node = new Node(2);
+            Console.WriteLine(@"var node = new Node(2);");
+            PrintAllItems(node.GetItemsValues(), nameof(node));
+
+            node.AppendToTail(13);
+            Console.WriteLine(@"node.AppendToTail(13);");
+            PrintAllItems(node.GetItemsValues(), nameof(node));
+            
+            node.AppendToTail(24);
+            Console.WriteLine(@"node.AppendToTail(24);");
+            PrintAllItems(node.GetItemsValues(), nameof(node));
+        }
+
+        #endregion
     }
 
     internal class Week : IEnumerable
@@ -709,5 +741,38 @@ namespace ExampleCollections
         private readonly string[] _days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
         public IEnumerator GetEnumerator() => _days.GetEnumerator();
+    }
+
+    internal class Node
+    {
+        Node Next { get; set; } = null;
+        int Data { get; set; }
+        
+        public Node(int data)
+        {
+            Data = data;
+        }
+
+        public void AppendToTail(int data)
+        {
+            Node end = new Node(data);
+            Node n = this;
+            while (n.Next != null)
+                n = n.Next;
+            n.Next = end;
+        }
+
+        public List<int> GetItemsValues()
+        {
+            List<int> values = new List<int>();
+            Node n = this;
+            values.Add(n.Data);
+            while (n.Next != null)
+            {
+                n = n.Next;
+                values.Add(n.Data);
+            }
+            return values;
+        }
     }
 }

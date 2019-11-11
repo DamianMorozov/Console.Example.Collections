@@ -2,6 +2,10 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.51] - 2019-11-11
+### Added
+- Singly linked list.
+
 ## [0.0.50] - 2019-10-24
 ### Updated
 - PrintAllItems method.
