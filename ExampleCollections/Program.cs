@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ExampleCollections
 {
@@ -53,9 +54,10 @@ namespace ExampleCollections
             Console.WriteLine("   18. Stack.");
             Console.WriteLine("2. System.Collections.Generic.");
             Console.WriteLine("   20. Dictionary<TKey, TValue>.");
-            Console.WriteLine("   21. LinkedList<T>.");
-            Console.WriteLine("   22. List<T>.");
-            Console.WriteLine("   23. SortedDictionary<TKey, TValue>.");
+            Console.WriteLine("   21. HashSet<T>.");
+            Console.WriteLine("   22. LinkedList<T>.");
+            Console.WriteLine("   23. List<T>.");
+            Console.WriteLine("   24. SortedDictionary<TKey, TValue>.");
             Console.WriteLine("3. System.Collections.Specialized.");
             Console.WriteLine("   30. ObservableCollection<T>.");
             Console.WriteLine("4. System.Collections.Concurrent (not working yet).");
@@ -121,13 +123,17 @@ namespace ExampleCollections
                     break;
                 case 21:
                     isPrintMenu = true;
-                    PrintLinkedList();
+                    PrintHashSet();
                     break;
                 case 22:
                     isPrintMenu = true;
-                    PrintList();
+                    PrintLinkedList();
                     break;
                 case 23:
+                    isPrintMenu = true;
+                    PrintList();
+                    break;
+                case 24:
                     isPrintMenu = true;
                     PrintSortedDictionary();
                     break;
@@ -172,16 +178,19 @@ namespace ExampleCollections
             }
         }
 
-        private static void PrintAllItems(IEnumerable items, string name)
+        private static void PrintAllItems(IEnumerable items, string name, bool useNewLine = false)
         {
             Console.WriteLine($@"// Print all {(string.IsNullOrEmpty(name) ? "items" : name)}.");
             var count = 0;
             foreach (var item in items)
             {
-                Console.Write($"{item} | ");
+                if (useNewLine)
+                    Console.WriteLine($"{item}");
+                else
+                    Console.Write($"{item} | ");
                 count++;
             }
-            Console.Write($"Count: {count}");
+            Console.Write($"Items count: {count}");
             Console.WriteLine();
         }
 
@@ -411,7 +420,29 @@ namespace ExampleCollections
             { ["Russia"] = "Moscow", ["France"] = "Paris", ["Germany"] = "Berlin" };
             Console.WriteLine($"Dictionary<string, string> {nameof(dictionaryCountry6)} = new Dictionary<string, string>()");
             Console.WriteLine("{ [\"Russia\"] = \"Moscow\", [\"France\"] = \"Paris\", [\"Germany\"] = \"Berlin\" };");
+        }
+
+        private static void PrintHashSet()
+        {
             Console.WriteLine(@"----------------------------------------------------------------------");
+            Console.WriteLine(@"---                         HashSet<T>                             ---");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            var hashSet = new HashSet<string>();
+            Console.WriteLine("var hashSet = new HashSet<string>();");
+            var rand = new Random();
+            for (int i = 0; i < 20; i++)
+            {
+                var r = rand.Next(0, 20);
+                hashSet.Add("String " + r.ToString());
+                Console.WriteLine($"hashSet.Add('String {r}');");
+            }
+            Console.WriteLine($"hashSet.Count: {hashSet.Count}");
+            Console.WriteLine(@"----------------------------------------------------------------------");
+
+            var orderList = hashSet.OrderBy(item => item).ToList();
+            Console.WriteLine("var orderList = hashSet.OrderBy(item => item).ToList();");
+            PrintAllItems(orderList, nameof(orderList), true);
         }
 
         private static void PrintLinkedList()
