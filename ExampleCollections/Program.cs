@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Linq;
 
 namespace ExampleCollections
 {
@@ -734,45 +733,5 @@ namespace ExampleCollections
         }
 
         #endregion
-    }
-
-    internal class Week : IEnumerable
-    {
-        private readonly string[] _days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-
-        public IEnumerator GetEnumerator() => _days.GetEnumerator();
-    }
-
-    internal class Node
-    {
-        Node Next { get; set; } = null;
-        int Data { get; set; }
-        
-        public Node(int data)
-        {
-            Data = data;
-        }
-
-        public void AppendToTail(int data)
-        {
-            Node end = new Node(data);
-            Node n = this;
-            while (n.Next != null)
-                n = n.Next;
-            n.Next = end;
-        }
-
-        public List<int> GetItemsValues()
-        {
-            List<int> values = new List<int>();
-            Node n = this;
-            values.Add(n.Data);
-            while (n.Next != null)
-            {
-                n = n.Next;
-                values.Add(n.Data);
-            }
-            return values;
-        }
     }
 }

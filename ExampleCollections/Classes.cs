@@ -2,6 +2,8 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -56,6 +58,46 @@ namespace ExampleCollections
             EnumerableRepeat,
             EncodingGetBytes,
             MemSet
+        }
+    }
+
+    internal class Week : IEnumerable
+    {
+        private readonly string[] _days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+        public IEnumerator GetEnumerator() => _days.GetEnumerator();
+    }
+
+    internal class Node
+    {
+        Node Next { get; set; } = null;
+        int Data { get; set; }
+
+        public Node(int data)
+        {
+            Data = data;
+        }
+
+        public void AppendToTail(int data)
+        {
+            Node end = new Node(data);
+            Node n = this;
+            while (n.Next != null)
+                n = n.Next;
+            n.Next = end;
+        }
+
+        public List<int> GetItemsValues()
+        {
+            List<int> values = new List<int>();
+            Node n = this;
+            values.Add(n.Data);
+            while (n.Next != null)
+            {
+                n = n.Next;
+                values.Add(n.Data);
+            }
+            return values;
         }
     }
 }
